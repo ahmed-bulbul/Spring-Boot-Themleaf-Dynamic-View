@@ -5,11 +5,9 @@ import com.thikthak.app.acl.auth.repository.UserRepository;
 import com.thikthak.app.acl.security.UserDetailsServiceImpl;
 import com.thikthak.app.acl.auth.service.UserService;
 import com.thikthak.app.service.system.MenuRenderService;
-import com.thikthak.app.util.PaginationHelper;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -74,8 +72,6 @@ public class DashboardController {
     }
 
 
-
-    @Secured("ROLE_USER")
     @RequestMapping({ "/", "/dashboard" })
     public String dashboard(HttpSession session, Model model, @RequestParam Map<String,String> clientParams){
         this.clientParams = clientParams;
@@ -89,8 +85,6 @@ public class DashboardController {
         model = this.loadDashboardComponents(model);
         // load dashboard components and others works ---- End
 
-        // Call menu render service
-        this.menuRenderService.printLeftSideMenu("From dashboard --- Controller");
 
         model.addAttribute("movies", "test");
         return "dashboard";
@@ -108,6 +102,15 @@ public class DashboardController {
     @ResponseBody
     public String helloRest() {
         return ("hello world");
+    }
+
+    @RequestMapping(value = "/hello2", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> helloRest2() {
+        Map<Integer,String> map = new HashMap<>();
+        map.put(1,"one");
+        map.put(2,"two");
+        map.put(3,"three");
+        return ResponseEntity.ok(map);
     }
 
 
