@@ -1,4 +1,4 @@
-package com.thikthak.app.main;
+package com.thikthak.app.modules.main;
 
 
 import org.springframework.stereotype.Controller;
