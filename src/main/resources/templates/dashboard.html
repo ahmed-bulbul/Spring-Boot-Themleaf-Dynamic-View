@@ -48,7 +48,7 @@
 
                 <!--suppress HtmlUnknownTag -->
                 <!--suppress CheckTagEmptyBody -->
-<!--                <th:block th:utext="${T(com.thikthak.app.util.TestUtils).toUpperCase2('hello world 123')}"></th:block>-->
+<!--                <th:block th:utext="${T(com.basic.app.util.TestUtils).toUpperCase2('hello world 123')}"></th:block>-->
 
                 <div class="row">
                     <div sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'EDITOR')"  th:remove="tag" th:utext="${HTML_visitorsLog}" ></div>

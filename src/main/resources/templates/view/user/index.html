@@ -155,7 +155,7 @@
                                         <a th:href="@{/user/edit/{id}(id=${user.id})}" class="btn btn-outline-primary btn-sm">
                                             <i class="far fa-edit"></i> Edit
                                         </a>
-                                        <a th:href="@{/user/delete/{id}(id=${user.id})}" class="btn btn-outline-danger btn-sm">
+                                        <a th:href="@{/user/delete/{id}(id=${user.id})}"  th:onclick="'javascript:deleteItem(' + ${user.id} + ');'" class="btn btn-outline-danger btn-sm">
                                             <i class="far fa-trash-alt"></i> Delete
                                         </a>
                                     </td>
@@ -275,7 +275,36 @@
 <!-- PAGE STYLES -->
 <link rel="stylesheet" href="/static/css/application.css" th:href="@{/css/application.css}">
 
+<script>
+    function deleteItem(id) {
+        event.preventDefault(); // prevent form submit
+        const url = '/hrms/user/delete/' + id;
 
+        swal({
+                title: "Are you sure?",
+                text: "But you will still be able to retrieve this file.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel please!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm){
+                if (isConfirm) {
+                    window.location.href =url;
+                } else {
+                    swal("Cancelled", "Your file is safe :)", "error");
+                }
+
+            });
+    }
+
+    $(".alert-dismissible").fadeTo(2000, 500).slideUp(500, function(){
+        $(".alert-dismissible").alert('close');
+    });
+</script>
 
 </body>
 </html>

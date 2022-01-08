@@ -7,7 +7,7 @@
         <a href="/" th:href="@{/}" class="brand-link navbar-primary">
             <!-- <img src="images/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
             <img src="" th:src="@{/img/logo.jpg}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3 bg-white" style="opacity: .8"/>
-            <span class="brand-text font-weight-light" style="font-weight: bold !important; color: azure;">ERP</span>
+            <span class="brand-text font-weight-light" style="font-weight: bold !important; color: azure;">HRMS</span>
         </a>
 
         <!-- Sidebar -->
@@ -23,7 +23,10 @@
 <!--                    <span sec:authentication="principal.authorities">abcRoles</span>-->
 <!--                    <div th:if="${session.containsKey('email')}" th:text="${session.email}"></div>-->
 <!--                    <div th:text="${session.name}">John Doe</div>-->
-                    <a href="#" class="d-block" th:text="${session.displayName}">Alexander Pierce</a>
+<!--                    <a th.href="@{/user/profile/{id}(id=${session.userId})}" class="d-block" th:text="${session.displayName}">Alexander Pierce</a>-->
+                    <a th:href="@{/user/profile/{id}(id=${session.userId})}" class="d-block" th:text="${session.displayName}"> </a>
+
+                    </a>
                 </div>
             </div>
 
@@ -197,7 +200,7 @@
 
                     <!--suppress HtmlUnknownTag -->
                     <!--suppress CheckTagEmptyBody -->
-                    <th:block th:utext="${T(com.thikthak.app.service.system.MenuRenderService).printLeftSideMenu('From dashboard --- View HTML')}"></th:block>
+                    <th:block th:utext="${T(com.basic.app.service.system.MenuRenderService).printLeftSideMenu('From dashboard --- View HTML')}"></th:block>
 
                 </ul>
             </nav>
